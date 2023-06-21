@@ -2,15 +2,15 @@
 #include <window.h>
 
 int main(void) {
-    
+
     SDL_Window* master = NULL;
     SDL_Renderer* renderer = NULL;
+    system("xfce4-terminal &");
     init(&master, &renderer);
 
     _Bool winActive = 1;
-    while(winActive) {
-    run_loop(&winActive, renderer);
-    }
+    while(winActive) 
+        run_loop(&winActive, renderer);
 
     clean_quit(master, renderer);
 

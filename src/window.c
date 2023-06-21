@@ -1,3 +1,4 @@
+// Local headers
 #include <window.h>
 
 void init(SDL_Window **window, SDL_Renderer **renderer) {
@@ -10,8 +11,8 @@ void init(SDL_Window **window, SDL_Renderer **renderer) {
         "Go Fish",
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        TILE_SIZE * BOARD_WIDTH,
-        TILE_SIZE * BOARD_HEIGHT,
+        TILE_SIZE * BOARD_WIDTH + (BORDER_PADDING * 2),
+        TILE_SIZE * BOARD_HEIGHT + (BORDER_PADDING * 2),
         SDL_WINDOW_RESIZABLE
     );
     *renderer = SDL_CreateRenderer(*window, -1, 0);
@@ -41,8 +42,7 @@ void run_loop(_Bool *winActive, SDL_Renderer* renderer) {
             SDL_RenderDrawRect(renderer, &rect);
         }
     }
-    SDL_Rect outerRect = {0, 0, (TILE_SIZE * BOARD_WIDTH) + BORDER_PADDING * 2, (TILE_SIZE * BOARD_HEIGHT) + BORDER_PADDING * 2};
-    SDL_RenderDrawRect(renderer, &outerRect);
+    draw_thick_rect(renderer, 0, 0, (TILE_SIZE * BOARD_WIDTH) + BORDER_PADDING * 2, (TILE_SIZE * BOARD_WIDTH) + BORDER_PADDING * 2, 10, BORDER_PADDING);
     SDL_RenderPresent(renderer);
 }
 
